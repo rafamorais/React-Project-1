@@ -1,0 +1,17 @@
+.container {
+  min-height: 100vh;
+  padding: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.button-container {
+  display: flex;
+  min-height: 40px;
+  margin-top: 50px;
+}
+
+.input-container,
+h1 {
+  margin-bottom: 30px;
+}
