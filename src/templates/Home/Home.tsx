@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import { Button } from "../../components/Button";
 import { Post } from "../../components/Post";
@@ -15,16 +15,16 @@ const Home = () => {
   const [searchValue, setSearchValue] = useState<string>("");
   const postsPerPage = 2;
 
-  useEffect(() => {
-    getData();
-  }, []);
-
-  const getData = async () => {
+  const getData = useCallback(async () => {
     const postsAndPhotos = await loadPosts();
 
-    setPosts(postsAndPhotos.slice(page, postsPerPage));
+    setPosts(postsAndPhotos.slice(0, postsPerPage));
     setAllPosts(postsAndPhotos);
-  };
+  }, []);
+
+  useEffect(() => {
+    getData();
+  }, [getData]);
 
   const loadMorePosts = (): void => {
     const nextPage = page + postsPerPage;
